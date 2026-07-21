@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if [[ -t 1 && "${NO_COLOR:-}" == "" ]]; then
+  HDK_COLOR_RESET='\033[0m'
+  HDK_COLOR_RED='\033[31m'
+  HDK_COLOR_GREEN='\033[32m'
+  HDK_COLOR_YELLOW='\033[33m'
+  HDK_COLOR_BLUE='\033[34m'
+  HDK_COLOR_BOLD='\033[1m'
+else
+  HDK_COLOR_RESET=''
+  HDK_COLOR_RED=''
+  HDK_COLOR_GREEN=''
+  HDK_COLOR_YELLOW=''
+  HDK_COLOR_BLUE=''
+  HDK_COLOR_BOLD=''
+fi
