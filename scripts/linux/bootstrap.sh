@@ -3,7 +3,7 @@
 linux_bootstrap() {
   local workspace="$1"
 
-  log_title "Linux environment"
+  print_banner "Linux environment" "Validation-only bootstrap"
   log_info "Distribution: ${OS_NAME}"
   log_info "Distribution ID: ${OS_ID}"
   log_info "Version: ${OS_VERSION}"
