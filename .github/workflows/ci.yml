@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+      - 'fix/**'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  shell-quality:
+    name: Shell quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Validate Bash syntax
+        run: |
+          bash -n install.sh
+          find scripts -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
+
+      - name: Run ShellCheck
+        run: shellcheck -x install.sh
+
+      - name: Run validation bootstrap
+        env:
+          HYBRID_WORKSPACE: /tmp/hybrid-workspace
+          NO_COLOR: '1'
+        run: ./install.sh
